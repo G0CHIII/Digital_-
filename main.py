@@ -82,9 +82,9 @@ class Search(TextInput):
         if text == '':
             return
         values = []
-        for addr in self.choiceslist:
-            if text.lower() in addr.lower():
-                values.append(addr)
+        for q in self.choiceslist:
+            if text.lower() in q.lower():
+                values.append(q)
         self.values = values
         if len(values) > 0:
             self.dropdown = DropDown()
