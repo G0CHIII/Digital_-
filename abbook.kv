@@ -1,0 +1,97 @@
+
+
+<abbook@Screen>:
+    rows: 2
+    name: 'abbook'
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+
+        GridLayout:
+            rows: 2
+            cols: 1
+            minimum_height: self.height
+
+            Image:
+                id: cuprum
+                source: 'cuprum.png'
+                size_hint: 1, 0.6
+                allow_stretch: True
+
+            RelativeLayout:
+                pos_hint: {'x': 1, 'y': 1}
+                Label:
+                    text_size: self.size
+                    halign: 'left'
+                    valign: 'top'
+                    padding: 10, 10
+                    text: '7 августа 1782 года на Сенатской площади был открыт памятник Петру I.\nГениальное творческое и техническое решение скульптора Этьена Фальконе – образ всадника, вздыбившего коня над обрывом скалы. Постаментом служит знаменитый «Гром-камень» – огромный, цельный, он был найден на Лахте, а его транспортировка заняла почти полгода. Специально для этого были построены пристань на Финском заливе и судно по особым чертежам, которое помогло доставить «Гром-камень» к Сенатской площади.'
+                    color: 0, 0, 0, 1
+
+    GridLayout:
+        cols: 4
+        size_hint: 1, 0.15
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                background_color: 255, 255, 255, 1
+                on_release: app.root.current = 'main'
+                Image:
+                    source: 'main.png'
+                    pos: self.parent.center_x*0.35, self.parent.center_y
+                    center_y: self.parent.center_y
+                    size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                background_color: 255, 255, 255, 1
+                on_release: app.root.current = 'library'
+                Image:
+                    source: 'library.png'
+                    pos: self.parent.center_x*0.75, self.parent.center_y
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                background_color: 255, 255, 255, 1
+                on_release: app.root.current = 'qrcamera'
+                Image:
+                    source: 'skan.png'
+                    pos: self.parent.center_x*0.85, self.parent.center_y
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                background_color: 255, 255, 255, 1
+                on_release: app.root.current = 'abapp'
+                Image:
+                    source: 'abapp.png'
+                    pos: self.parent.center_x*0.90, self.parent.center_y
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+
+

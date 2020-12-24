@@ -1,0 +1,333 @@
+#:include library.kv
+#:include abapp.kv
+#:include abbook.kv
+#:include vidbook.kv
+#:include audbook.kv
+#:include illust.kv
+#:include camera.kv
+#:include voda.kv
+#:include sign.kv
+
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import hex kivy.utils.get_color_from_hex
+
+<MainScreenManager>:
+    transition: NoTransition()
+
+    Screen:
+        name: 'main'
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: 'vertical'
+            cols: 1
+
+            BoxLayout:
+                size_hint: 1, 0.05
+                canvas.before:
+                    Color:
+                        rgba: 1,1,1,1 #hex('E4D9FF')
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            BoxLayout:
+                size_hint: 1, 0.35
+                canvas.before:
+                    Color:
+                        rgba: 1,1,1,1 # hex('E4D9FF')
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Image:
+                    source: 'logo.png'
+
+            BoxLayout:
+                size_hint: 1, 0.05
+                canvas.before:
+                    Color:
+                        rgba: 1,1,1,1 #hex('E4D9FF')
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            Carousel:
+                size_hint: 1, 0.40
+                canvas.before:
+                    Color:
+                        rgba: 1,1,1,1  #hex('#273469')
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                direction: 'right'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    BoxLayout:
+                        size_hint: 1, 0.01
+                        canvas.before:
+                            Color:
+                                rgba: hex('#ffe600')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        size_hint: 1, 0.2
+                        canvas.before:
+                            Color:
+                                rgba: 1,1,1,1 #hex('#ffe600')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        markup: True
+                        text: '[b][color=ffe600]CÃŒ“–».[/b][/color]   ◊»“¿….   —À”ÿ¿….'
+                        color: 0,0,0,1
+                        font_size: 25
+                    BoxLayout:
+                        size_hint: 1, 0.01
+                        canvas.before:
+                            Color:
+                                rgba: hex('#ffe600')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Button:
+                        on_release: app.root.current = root.watch_screen
+                        background_color: 255,255,255,1
+                        StackLayout:
+                            canvas.before:
+                                Color:
+                                    rgba: (1, 1, 1, 1)
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                            borders: 2, 'solid', (1,1,1,1.)
+                            pos: self.parent.x, self.parent.height / 4
+                            size: self.parent.width, self.parent.height * 0.7
+                            orientation: 'lr-tb'
+                            Label:
+                                size_hint_x: 0.1
+                                size_hint_y: 1
+                            Image:
+                                source: 'glaz.png'
+                                size_hint_x: 0.3
+                                size_hint_y: 1
+                            Label:
+                                size_hint_x: 0.1
+                                size_hint_y: 1
+                            Label:
+                                size_hint_x: 0.4
+                                size_hint_y: 1
+                                markup: True
+                                text_size: self.size
+                                halign: 'left'
+                                valign: 'center'
+                                text: app.watch
+                                color: 0, 0, 0, 1
+                BoxLayout:
+                    orientation: 'vertical'
+                    BoxLayout:
+                        size_hint: 1, 0.01
+                        canvas.before:
+                            Color:
+                                rgba: hex('#d54f7e')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        size_hint: 1, 0.2
+                        canvas.before:
+                            Color:
+                                rgba: 1,1,1,1 #hex('#273469')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        markup: True
+                        text: '—ÃŒ“–».   [b][color=d54f7e]◊»“¿….[/b][/color]   —À”ÿ¿….'
+                        color: 0,0,0,1
+                        font_size: 25
+                    BoxLayout:
+                        size_hint: 1, 0.01
+                        canvas.before:
+                            Color:
+                                rgba: hex('#d54f7e')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Button:
+                        on_release: app.root.current = root.read_screen
+                        background_color: 5, 8, 9, 0
+                        StackLayout:
+                            canvas.before:
+                                Color:
+                                    rgba: (1, 1, 1, 1)
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                            pos: self.parent.x, self.parent.height / 4
+                            size: self.parent.width, self.parent.height * 0.7
+                            orientation: 'lr-tb'
+                            Label:
+                                size_hint_x: 0.1
+                                size_hint_y: 1
+                            Image:
+                                source: 'read.png'
+                                size_hint_x: 0.3
+                                size_hint_y: 1
+                            Label:
+                                size_hint_x: 0.1
+                                size_hint_y: 1
+                            Label:
+                                size_hint_x: 0.4
+                                size_hint_y: 1
+                                markup: True
+                                text_size: self.size
+                                halign: 'left'
+                                valign: 'center'
+                                text: app.read
+                                color: 0, 0, 0, 1
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    BoxLayout:
+                        size_hint: 1, 0.01
+                        canvas.before:
+                            Color:
+                                rgba: hex('#67e4aa')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        size_hint: 1, 0.2
+                        canvas.before:
+                            Color:
+                                rgba: 1,1,1,1 #hex('#273469')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        markup: True
+                        text: '—ÃŒ“–».   ◊»“¿….   [b][color=67e4aa]—À”ÿ¿….[/b][/color]'
+                        color: 0,0,0,1
+                        font_size: 25
+                    BoxLayout:
+                        size_hint: 1, 0.01
+                        canvas.before:
+                            Color:
+                                rgba: hex('#67e4aa')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Button:
+                        on_release: app.root.current = root.listen_screen
+                        background_color: 5, 8, 9, 0
+                        StackLayout:
+                            canvas.before:
+                                Color:
+                                    rgba: (1, 1, 1, 1)
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                            pos: self.parent.x, self.parent.height / 4
+                            size: self.parent.width, self.parent.height * 0.7
+                            orientation: 'lr-tb'
+                            Label:
+                                size_hint_x: 0.1
+                                size_hint_y: 1
+                            Image:
+                                source: 'ears.png'
+                                size_hint_x: 0.3
+                                size_hint_y: 1
+                            Label:
+                                size_hint_x: 0.1
+                                size_hint_y: 1
+                            Label:
+                                size_hint_x: 0.4
+                                size_hint_y: 1
+                                markup: True
+                                text_size: self.size
+                                halign: 'left'
+                                valign: 'center'
+                                text: app.listen
+                                color: 0, 0, 0, 1
+
+
+
+            GridLayout:
+                cols: 4
+                size_hint: 1, 0.15
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Button:
+                        background_color: 255, 255, 255, 1
+                        on_release: app.root.current = 'main'
+                        Image:
+                            source: 'main.png'
+                            center_x: self.parent.center_x
+                            center_y: self.parent.center_y
+                            size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Button:
+                        background_color: 255, 255, 255, 1
+                        on_release: app.root.current = 'library'
+                        Image:
+                            source: 'library.png'
+                            center_x: self.parent.center_x
+                            center_y: self.parent.center_y
+                            size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Button:
+                        background_color: 255, 255, 255, 1
+                        on_release: app.root.current = 'qrcamera'
+                        Image:
+                            source: 'skan.png'
+                            center_x: self.parent.center_x
+                            center_y: self.parent.center_y
+                            size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Button:
+                        background_color: 255, 255, 255, 1
+                        on_release: app.root.current = 'abapp'
+                        Image:
+                            source: 'abapp.png'
+                            center_x: self.parent.center_x
+                            center_y: self.parent.center_y
+                            size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+    library:
+
+    abapp:
+
+    abbook:
+
+    vidbook:
+
+    audbook:
+
+    illust:
+
+    voda:
+
+    sign:
+
+    qrcamera:
+

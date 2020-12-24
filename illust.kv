@@ -1,0 +1,187 @@
+
+
+<illust@Screen>:
+    name: 'illust'
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            GridLayout:
+                size_hint_y: None
+                cols: 1
+                row_default_height: '400dp'
+                spacing: 20, 20
+                padding: 10, 10
+                height: self.minimum_height
+
+
+
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: benua1
+                        source: 'benua1.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: 300
+
+                    RelativeLayout:
+                        pos_hint: {'x': 1, 'y': 1}
+                        Label:
+                            text_size: self.size
+                            halign: 'center'
+                            valign: 'top'
+                            markup: True
+                            text: "[b]Иллюстрации А.Н. Бенуа к поэме А.С. Пушкина\n«Медный всадник»[/b]"
+                            color: 0, 0, 0, 1
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: benua2
+                        source: 'benua2.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: 300
+
+                    RelativeLayout:
+                        pos_hint: {'x': 1, 'y': 1}
+                        Label:
+                            text_size: self.size
+                            halign: 'center'
+                            valign: 'top'
+                            text: 'И во всю ночь безумец бедный\nКуда стопы ни обращал,\nЗа ним повсюду Всадник Медный\nС тяжелым топотом скакал.'
+                            color: 0, 0, 0, 1
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: benua3
+                        source: 'benua3.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: 300
+
+                    RelativeLayout:
+                        pos_hint: {'x': 1, 'y': 1}
+                        Label:
+                            text_size: self.size
+                            halign: 'center'
+                            valign: 'top'
+                            text: 'И всплыл Петрополь как Тритон,\nПо пояс в воду погружен.\nОсада! Приступ! Злые волны,\nКак воры, лезут в окна. Челны\nС разбега стекла бьют кормой.'
+                            color: 0, 0, 0, 1
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: benua4
+                        source: 'benua4.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: 300
+
+                    RelativeLayout:
+                        pos_hint: {'x': 1, 'y': 1}
+                        Label:
+                            text_size: self.size
+                            halign: 'center'
+                            valign: 'top'
+                            text: 'Глядит... идет... еще глядит.\nВот место, где их дом стоит;\nВот ива. Были здесь вороты —\nСнесло их, видно. Где же дом?'
+                            color: 0, 0, 0, 1
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: benua5
+                        source: 'benua5.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: 300
+
+                    RelativeLayout:
+                        pos_hint: {'x': 1, 'y': 1}
+                        Label:
+                            text_size: self.size
+                            halign: 'center'
+                            valign: 'top'
+                            text: '.. Злые дети бросали камни вслед ему'
+                            color: 0, 0, 0, 1
+
+        GridLayout:
+            cols: 4
+            size_hint: 1, 0.15
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'main'
+                    Image:
+                        source: 'main.png'
+                        pos: self.parent.center_x*0.35, self.parent.center_y
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'library'
+                    Image:
+                        source: 'library.png'
+                        pos: self.parent.center_x*0.75, self.parent.center_y
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'qrcamera'
+                    Image:
+                        source: 'skan.png'
+                        pos: self.parent.center_x*0.85, self.parent.center_y
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'abapp'
+                    Image:
+                        source: 'abapp.png'
+                        pos: self.parent.center_x*0.90, self.parent.center_y
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+

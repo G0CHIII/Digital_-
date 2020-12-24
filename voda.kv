@@ -1,0 +1,136 @@
+
+
+<voda@Screen>:
+    name: 'voda'
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            GridLayout:
+                size_hint_y: None
+                cols: 1
+                row_default_height: '450dp'
+                spacing: 20, 20
+                height: self.minimum_height
+
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: voda1
+                        source: 'voda1.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: 350
+
+                    RelativeLayout:
+                        pos_hint: {'x': 1, 'y': 1}
+                        Label:
+                            text_size: self.size
+                            halign: 'left'
+                            valign: 'top'
+                            padding: 10, 10
+                            text: "Наводнение 1824 года стало самым мощным и разрушительным за всё время существования Санкт-Петербурга. Вода поднялась до отметки 4,21 метра. Городу  причинен небывалый ущерб.Стихия полностью разрушила 324 дома и повредила половину всех имевшихся строений. В городской гавани на момент наводнения находилось 94 судна, спаслись только 12."
+                            color: 0, 0, 0, 1
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: voda2
+                        source: 'voda2.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: 350
+
+                    RelativeLayout:
+                        pos_hint: {'x': 1, 'y': 1}
+                        Label:
+                            text_size: self.size
+                            halign: 'left'
+                            valign: 'top'
+                            padding: 10, 10
+                            text: "Данные о погибших разнятся. По меньшим подсчётам, погибло около 200 человек, по максимальным — 4000. Причина отличия данных в том, что погибали люди, оставшиеся поздней осенью без крова. Они простужались и болели, но оперативно доставить помощь было невозможно."
+                            color: 0, 0, 0, 1
+
+                GridLayout:
+                    rows: 1
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: voda3
+                        source: 'voda3.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: 350
+
+        GridLayout:
+            cols: 4
+            size_hint: 1, 0.15
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'main'
+                    Image:
+                        source: 'main.png'
+                        pos: self.parent.center_x*0.35, self.parent.center_y
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'library'
+                    Image:
+                        source: 'library.png'
+                        pos: self.parent.center_x*0.75, self.parent.center_y
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'qrcamera'
+                    Image:
+                        source: 'skan.png'
+                        pos: self.parent.center_x*0.85, self.parent.center_y
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'abapp'
+                    Image:
+                        source: 'abapp.png'
+                        pos: self.parent.center_x*0.90, self.parent.center_y
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+

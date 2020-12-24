@@ -1,0 +1,307 @@
+#:import hex kivy.utils.get_color_from_hex
+
+<library@Screen>:
+
+    name: 'library'
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        RelativeLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 0.08
+            pos_hint: {'top': 1}
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            AnchorLayout:
+                size_hint: 1, 1
+                Search:
+
+
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            canvas.before:
+                Color:
+                    rgba: hex('#273469')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+
+            GridLayout:
+                size_hint_y: None
+                cols: 1
+                row_default_height: '125dp'
+                spacing: 20, 20
+                padding: 10, 10
+                height: self.minimum_height
+
+
+                Button:
+                    on_release: app.root.current = 'illust'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'glaz.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Медный Всадник[/b]\nА.С. Пушкин'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'Иллюстрации'
+                            color: 0, 0, 0, 1
+
+
+                Button:
+                    on_release: app.root.current = 'abbook'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'read.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Медный Всадник[/b]\nА.С. Пушкин'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'О памятнике'
+                            color: 0, 0, 0, 1
+
+
+                Button:
+                    on_release: app.root.current = 'audbook'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'ears.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Медный Всадник[/b]\nА.С. Пушкин'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'Аудиокнига'
+                            color: 0, 0, 0, 1
+
+
+                Button:
+                    on_release: app.root.current = 'vidbook'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'glaz.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Медный Всадник[/b]\nА.С. Пушкин'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'Спектакль'
+                            color: 0, 0, 0, 1
+
+                Button:
+                    on_release: app.root.current = 'voda'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'read.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Медный Всадник[/b]\nА.С. Пушкин'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'О наводнении'
+                            color: 0, 0, 0, 1
+
+                Button:
+                    on_release: app.root.current = 'sign'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'read.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Медный Всадник[/b]\nА.С. Пушкин'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'О печати на книге'
+                            color: 0, 0, 0, 1
+
+
+
+        GridLayout:
+            cols: 4
+            size_hint: 1, 0.15
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'main'
+                    Image:
+                        source: 'main.png'
+                        pos: self.parent.center_x*0.35, self.parent.center_y
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'library'
+                    Image:
+                        source: 'library.png'
+                        pos: self.parent.center_x*0.75, self.parent.center_y
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'qrcamera'
+                    Image:
+                        source: 'skan.png'
+                        pos: self.parent.center_x*0.85, self.parent.center_y
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    background_color: 255, 255, 255, 1
+                    on_release: app.root.current = 'abapp'
+                    Image:
+                        source: 'abapp.png'
+                        pos: self.parent.center_x*0.90, self.parent.center_y
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size: self.parent.width * 0.7, self.parent.width * 0.7
+
