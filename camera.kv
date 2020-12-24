@@ -18,13 +18,13 @@
             pos_hint: {'bottom': 1}
 
             Button:
-                text: 'Сканируй' if root.scan_res in root.screen_list else 'Ищу QR код...'
+                text: 'РЎРєР°РЅРёСЂСѓР№' if root.scan_res in root.screen_list else 'РС‰Сѓ QR РєРѕРґ...'
                 color: 0, 0, 0, 1
                 on_release: if root.scan_res in root.screen_list: app.root.current = root.scan_res
                 background_color: 255, 255, 255, 1
 
             Button:
-                text: 'На главную'
+                text: 'РќР° РіР»Р°РІРЅСѓСЋ'
                 color: 0, 0, 0, 1
                 on_release: app.root.current = 'main'
                 background_color: 255, 255, 255, 1
