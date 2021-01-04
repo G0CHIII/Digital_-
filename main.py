@@ -25,8 +25,6 @@ Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 Window.size = (480, 853)
 
-#with open("illust.kv", encoding='utf-8') as f:
-#    drunk = Builder.load_string(f.read())
 
 watchlist = ['Медный всадник А.С. Пушкин: Иллюстрации',
                  'Медный всадник А.С. Пушкин: Спектакль']
@@ -48,32 +46,13 @@ class Search(TextInput):
 
     def __init__(self, **kwargs):
         self.choicesfile = kwargs.pop('choicesfile', '')
-        self.choiceslist = ['Медный всадник А.С. Пушкин: Иллюстрации',
-                            'Медный всадник А.С. Пушкин: Спектакль',
-                            'Медный всадник А.С. Пушкин: О книге',
-                            'Медный всадник А.С. Пушкин: О наводнении',
-                            'Медный всадник А.С. Пушкин: О печати на книге',
-                            'Медный всадник А.С. Пушкин: Аудиокнига']
-        self.choisesscreen = {'Медный всадник А.С. Пушкин: Иллюстрации': 'illust',
-                              'Медный всадник А.С. Пушкин: Спектакль': 'vidbook',
-                              'Медный всадник А.С. Пушкин: О книге': 'abbook',
-                              'Медный всадник А.С. Пушкин: О наводнении': 'voda',
-                              'Медный всадник А.С. Пушкин: О печати на книге': 'sign',
-                              'Медный всадник А.С. Пушкин: Аудиокнига': 'audbook'}
+        self.choiceslist = watchlist + readlist + listenlist
+        self.choisesscreen = choisesscreen
         super(Search, self).__init__(**kwargs)
-        self.bind(choicesfile=self.load_choices)
         self.bind(text=self.on_text)
-        self.load_choices()
         self.dropdown = None
         self.hint_text = 'Поиск'
         self.font_size = 20
-
-    def load_choices(self):
-        if self.choicesfile:
-            with open(self.choicesfile) as fd:
-                for line in fd:
-                    self.choiceslist.append(line.strip('\n'))
-        self.values = []
 
     def on_text(self, Search, text):
         if self.dropdown:
