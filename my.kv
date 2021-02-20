@@ -4,7 +4,7 @@
 #:include vidbook.kv
 #:include audbook.kv
 #:include illust.kv
-#:include camera.kv
+#:include mycamera.kv
 #:include voda.kv
 #:include sign.kv
 
@@ -29,76 +29,60 @@
             cols: 1
 
             BoxLayout:
-                size_hint: 1, 0.05
+                size_hint: 1, 0.30
                 canvas.before:
                     Color:
-                        rgba: 1,1,1,1 #hex('E4D9FF')
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            BoxLayout:
-                size_hint: 1, 0.35
-                canvas.before:
-                    Color:
-                        rgba: 1,1,1,1 # hex('E4D9FF')
+                        rgba: hex('E4D9FF')
                     Rectangle:
                         pos: self.pos
                         size: self.size
                 Image:
                     source: 'logo.png'
+                    size_hint_y: None
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    height: self.parent.height * 0.85
 
             BoxLayout:
-                size_hint: 1, 0.05
+                size_hint: 1, 0.25
+                Button:
+                    size: [370, 170]
+                    text: 'QR                            AR'
+                    color: 0,0,0,1
+                    font_size: 30
+                    background_normal:'stripes_fit.png'
+                    background_down: 'stripes_fit.png'
+                    on_release: app.root.current = 'thecamera'
+                    Image:
+                        source: 'qrar.png'
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+            Label:
                 canvas.before:
                     Color:
-                        rgba: 1,1,1,1 #hex('E4D9FF')
+                        rgba: hex('#273469')
                     Rectangle:
                         pos: self.pos
                         size: self.size
-
+                size_hint: 1, 0.05
+                markup: True
+                text: 'СМОТРИ.  ЧИТАЙ.  СЛУШАЙ.'
+                color: 1,1,1,1
+                font_size: 20
             Carousel:
-                size_hint: 1, 0.40
+                size_hint: 1, 0.25
                 canvas.before:
                     Color:
-                        rgba: 1,1,1,1  #hex('#273469')
+                        rgba: hex('#273469')
                     Rectangle:
                         pos: self.pos
                         size: self.size
                 direction: 'right'
-
                 BoxLayout:
                     orientation: 'vertical'
-                    BoxLayout:
-                        size_hint: 1, 0.01
-                        canvas.before:
-                            Color:
-                                rgba: hex('#ffe600')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    Label:
-                        size_hint: 1, 0.2
-                        canvas.before:
-                            Color:
-                                rgba: 1,1,1,1 #hex('#ffe600')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                        markup: True
-                        text: '[b][color=ffe600]CМОТРИ.[/b][/color]   ЧИТАЙ.   СЛУШАЙ.'
-                        color: 0,0,0,1
-                        font_size: 25
-                    BoxLayout:
-                        size_hint: 1, 0.01
-                        canvas.before:
-                            Color:
-                                rgba: hex('#ffe600')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                    padding: 20, 0
                     Button:
-                        on_release: app.root.current = root.watch_screen
-                        background_color: 255,255,255,1
+                        on_release: app.root.current = app.root.watch_screen
+                        background_color: 5, 8, 9, 0
                         StackLayout:
                             canvas.before:
                                 Color:
@@ -107,7 +91,6 @@
                                     pos: self.pos
                                     size: self.size
                                     radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
-                            borders: 2, 'solid', (1,1,1,1.)
                             pos: self.parent.x, self.parent.height / 4
                             size: self.parent.width, self.parent.height * 0.7
                             orientation: 'lr-tb'
@@ -132,36 +115,9 @@
                                 color: 0, 0, 0, 1
                 BoxLayout:
                     orientation: 'vertical'
-                    BoxLayout:
-                        size_hint: 1, 0.01
-                        canvas.before:
-                            Color:
-                                rgba: hex('#d54f7e')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    Label:
-                        size_hint: 1, 0.2
-                        canvas.before:
-                            Color:
-                                rgba: 1,1,1,1 #hex('#273469')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                        markup: True
-                        text: 'СМОТРИ.   [b][color=d54f7e]ЧИТАЙ.[/b][/color]   СЛУШАЙ.'
-                        color: 0,0,0,1
-                        font_size: 25
-                    BoxLayout:
-                        size_hint: 1, 0.01
-                        canvas.before:
-                            Color:
-                                rgba: hex('#d54f7e')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                    padding: 20, 0
                     Button:
-                        on_release: app.root.current = root.read_screen
+                        on_release: app.root.current = app.root.read_screen
                         background_color: 5, 8, 9, 0
                         StackLayout:
                             canvas.before:
@@ -193,39 +149,11 @@
                                 valign: 'center'
                                 text: app.read
                                 color: 0, 0, 0, 1
-
                 BoxLayout:
                     orientation: 'vertical'
-                    BoxLayout:
-                        size_hint: 1, 0.01
-                        canvas.before:
-                            Color:
-                                rgba: hex('#67e4aa')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    Label:
-                        size_hint: 1, 0.2
-                        canvas.before:
-                            Color:
-                                rgba: 1,1,1,1 #hex('#273469')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                        markup: True
-                        text: 'СМОТРИ.   ЧИТАЙ.   [b][color=67e4aa]СЛУШАЙ.[/b][/color]'
-                        color: 0,0,0,1
-                        font_size: 25
-                    BoxLayout:
-                        size_hint: 1, 0.01
-                        canvas.before:
-                            Color:
-                                rgba: hex('#67e4aa')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                    padding: 20, 0
                     Button:
-                        on_release: app.root.current = root.listen_screen
+                        on_release: app.root.current = app.root.listen_screen
                         background_color: 5, 8, 9, 0
                         StackLayout:
                             canvas.before:
@@ -258,8 +186,6 @@
                                 text: app.listen
                                 color: 0, 0, 0, 1
 
-
-
             GridLayout:
                 cols: 4
                 size_hint: 1, 0.15
@@ -275,8 +201,6 @@
                             center_y: self.parent.center_y
                             size: self.parent.width * 0.7, self.parent.width * 0.7
 
-
-
                 BoxLayout:
                     orientation: 'horizontal'
                     Button:
@@ -288,18 +212,16 @@
                             center_y: self.parent.center_y
                             size: self.parent.width * 0.7, self.parent.width * 0.7
 
-
                 BoxLayout:
                     orientation: 'horizontal'
                     Button:
                         background_color: 255, 255, 255, 1
-                        on_release: app.root.current = 'qrcamera'
+                        on_release: app.root.current = 'thecamera'
                         Image:
                             source: 'skan.png'
                             center_x: self.parent.center_x
                             center_y: self.parent.center_y
                             size: self.parent.width * 0.7, self.parent.width * 0.7
-
 
                 BoxLayout:
                     orientation: 'horizontal'
@@ -329,5 +251,5 @@
 
     sign:
 
-    qrcamera:
+    thecamera:
 

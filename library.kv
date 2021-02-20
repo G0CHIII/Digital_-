@@ -150,7 +150,6 @@
                             text: 'Аудиокнига'
                             color: 0, 0, 0, 1
 
-
                 Button:
                     on_release: app.root.current = 'vidbook'
                     background_color: 255, 255, 255, 0
@@ -247,6 +246,133 @@
                             text: 'О печати на книге'
                             color: 0, 0, 0, 1
 
+                Button:
+                    on_release: app.root.current = 'vscraft'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'glaz.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Вишневый сад[/b]\nА.П. Чехов'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'Minecraft-спектакль'
+                            color: 0, 0, 0, 1
+
+                Button:
+                    on_release: app.root.current = 'vslecture'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'glaz.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Вишневый сад[/b]\nА.П. Чехов'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'Лекция'
+                            color: 0, 0, 0, 1
+
+                Button:
+                    on_release: app.root.current = 'dkpkast'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'ears.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Дон Кихот[/b]\nМ. де Сервантес'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'Подкаст'
+                            color: 0, 0, 0, 1
+
+                Button:
+                    on_release: app.root.current = 'dkfilm'
+                    background_color: 255, 255, 255, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                        pos: self.parent.pos
+                        size: self.parent.size
+                        orientation: 'lr-tb'
+                        Image:
+                            source: 'glaz.png'
+                            size_hint_x: 0.3
+                            size_hint_y: 0.7
+
+                        Label:
+                            size_hint_x: 0.7
+                            size_hint_y: 0.7
+                            markup: True
+                            text: '[b]Дон Кихот[/b]\nМ. де Сервантес'
+                            color: 0, 0, 0, 1
+
+                        Label:
+                            size_hint_x: 0.3
+                            size_hint_y: 0.3
+                            text: 'Фильм'
+                            color: 0, 0, 0, 1
 
 
         GridLayout:
