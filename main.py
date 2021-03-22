@@ -17,6 +17,7 @@ from kivy.uix.dropdown import DropDown
 from kivy.uix.textinput import TextInput
 import random
 from mycamera import *
+from library import *
 from kivy.uix.boxlayout import BoxLayout
 
 from io import open
