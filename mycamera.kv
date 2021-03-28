@@ -1,0 +1,41 @@
+<thecamera@Screen>:
+    name: 'thecamera'
+
+    screen_list: ['abbook']
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Widget:
+            id: proxy
+            MyCamera:
+                id: camera
+                resolution: (640, 480)
+                size_hint: 1, .7
+                play: True
+                allow_stretch: True
+                keep_ratio: True
+                center: self.size and proxy.center
+                size:(proxy.height, proxy.width)
+                canvas.before:
+                    PushMatrix
+                    Rotate:
+                        angle: 0
+                        origin: self.center
+                canvas.after:
+                    PopMatrix
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 0.10
+            pos_hint: {'bottom': 1}
+
+            Button:
+                text: 'Сканируй' if camera.symbol in root.screen_list else 'Ищу QR код...'
+                on_press: str(app.on_pause())
+                on_release: if camera.symbol in root.screen_list: app.root.current = camera.symbol
+
+            Button:
+                text: 'На главную'
+                on_press: app.on_pause()
+                on_release: app.root.current = 'main'
