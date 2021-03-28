@@ -1,8 +1,7 @@
 
-
-<audbook@Screen>:
+<dkfilm@Screen>:
     rows: 2
-    name: 'audbook'
+    name: 'dkfilm'
 
     canvas.before:
         Color:
@@ -11,30 +10,34 @@
             pos: self.pos
             size: self.size
 
-    GridLayout:
-        rows: 2
-        cols: 1
-        minimum_height: self.height
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
 
-        Image:
-            id: cuprum
-            source: 'aud.png'
-            size_hint: 1, 0.6
-            allow_stretch: True
+        GridLayout:
+            rows: 2
+            cols: 1
+            minimum_height: self.height
 
-        RelativeLayout:
-            pos_hint: {'x': 1, 'y': 1}
-            Label:
-                markup: True
-                text_size: self.size
-                halign: 'center'
-                valign: 'top'
-                padding: 10, 10
-                text: 'А.С.Пушкин. "Медный всадник". Читает Сергей Герасимов (1982)\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
-                color: 0, 0, 0, 1
-                on_ref_press:
-                    import webbrowser
-                    webbrowser.open('https://www.youtube.com/watch?v=8stiZXNoC9g')
+            Image:
+                id: cuprum
+                source: 'dkfilm.png'
+                size_hint: 1, 0.6
+                allow_stretch: True
+
+            RelativeLayout:
+                pos_hint: {'x': 1, 'y': 1}
+                Label:
+                    markup: True
+                    text_size: self.size
+                    halign: 'center'
+                    valign: 'top'
+                    padding: 10, 10
+                    text: 'Фильм "Человек который убил Дон Кихота"\nРежиссер: Терри Гиллиам\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
+                    color: 0, 0, 0, 1
+                    on_ref_press:
+                        import webbrowser
+                        webbrowser.open('https://www.kinopoisk.ru/film/650699/')
 
     GridLayout:
         cols: 4
@@ -91,4 +94,6 @@
                     center_x: self.parent.center_x
                     center_y: self.parent.center_y
                     size: self.parent.width * 0.7, self.parent.width * 0.7
+
+
 

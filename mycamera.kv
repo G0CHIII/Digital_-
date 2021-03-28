@@ -31,11 +31,15 @@
             pos_hint: {'bottom': 1}
 
             Button:
+                background_color: 255, 255, 255, 1
                 text: 'Сканируй' if camera.symbol in root.screen_list else 'Ищу QR код...'
+                color: 0, 0, 0, 1
                 on_press: str(app.on_pause())
                 on_release: if camera.symbol in root.screen_list: app.root.current = camera.symbol
 
             Button:
+                background_color: 255, 255, 255, 1
                 text: 'На главную'
+                color: 0, 0, 0, 1
                 on_press: app.on_pause()
                 on_release: app.root.current = 'main'
