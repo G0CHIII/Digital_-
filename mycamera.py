@@ -19,7 +19,23 @@ def rotate_image(image, angle):
 class MyCamera(Camera, FloatLayout):
     symbol = StringProperty()
     def __init__(self, **kwargs):
+        self._request_android_permissions()
         super(MyCamera, self).__init__(**kwargs)
+
+    @staticmethod
+    def is_android():
+        return platform == 'android'
+
+    def _request_android_permissions(self):
+        """
+        Requests CAMERA permission on Android.
+        """
+        print("_request")
+
+        if not self.is_android():
+            return
+        from android.permissions import request_permission, Permission
+        request_permission(Permission.CAMERA)
 
     def _camera_loaded(self, *largs):
         if kivy.platform == 'android':
@@ -29,11 +45,11 @@ class MyCamera(Camera, FloatLayout):
             self.texture = self._camera.texture
             self.texture_size = list(self.texture.size)
         self.btn_qr = ToggleButton(group='fun', allow_no_selection = False, state='down',
-                                   pos_hint = {'center_x': .4, 'center_y': .9}, size_hint=[None, None], size=[100, 100],
+                                   pos_hint = {'center_x': .4, 'y': 1}, size_hint=[None, None], size=[100, 100],
                                    background_normal  = 'qr.png', background_down  = 'qr_dark.png'
                                    )
         self.btn_ar = ToggleButton(group='fun', allow_no_selection = False,
-                                   pos_hint = {'center_x': .6, 'center_y': .9}, size_hint=[None, None], size=[100, 100],
+                                   pos_hint = {'center_x': .6, 'y': 1}, size_hint=[None, None], size=[100, 100],
                                    background_normal  = 'ar.png', background_down  = 'ar_dark.png'
                                    )
         self.add_widget(self.btn_qr)
@@ -83,12 +99,18 @@ class MyCamera(Camera, FloatLayout):
         return frame.tostring()
 
     def process_frame(self, frame):
-        # imgVideo = cv2.imread("trian.png")
-        myVid = cv2.VideoCapture("vodichka.mp4")
-        imgTarget = cv2.imread("NaezdnikLol.png")
-        imgTarget_2 = cv2.imread("glaz.png")
-        imgTarget_list = [imgTarget, imgTarget_2]
-        images_list = ['logo', 'vsadnik']
+        mv_0 = cv2.imread("mv_0.png")
+        vs_0 = cv2.imread("mv_0.png")
+        imgTarget_list = [mv_0, vs_0]
+        images_list = ['vsadnik', 'vishnya']
+        mv_1 = cv2.imread("mv_1.png")
+        mv_2 = cv2.imread("mv_2.png")
+        mv_3 = cv2.imread("mv_3.png")
+        mv_4 = cv2.imread("mv_4.png")
+        mv_5 = cv2.imread("mv_5.png")
+        mv_list = [mv_1, mv_2, mv_3, mv_4, mv_5]
+        vs_list = [mv_1, mv_2, mv_3, mv_4, mv_5]
+        anim_list = [mv_list, vs_list]
 
         orb = cv2.ORB_create()
         imgAug = frame.copy()
@@ -96,24 +118,24 @@ class MyCamera(Camera, FloatLayout):
         imgAug = cv2.drawKeypoints(imgAug, kp2, None)
         bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 
-        # for i in imgTarget_list:
-        kp1, des1 = orb.detectAndCompute(imgTarget, None)
-        matches = bf.match(des1, des2)
-        good_matches_1 = sorted(matches, key=lambda x: x.distance)
+        kp_mv, des_mv = orb.detectAndCompute(mv_0, None)
+        matches = bf.match(des_mv, des2)
+        good_matches_mv = sorted(matches, key=lambda x: x.distance)
 
-        kp1_2, des1_2 = orb.detectAndCompute(imgTarget_2, None)
-        matches = bf.match(des1_2, des2)
-        good_matches_2 = sorted(matches, key=lambda x: x.distance)
+        kp_vs, des_vs = orb.detectAndCompute(vs_0, None)
+        matches = bf.match(des_vs, des2)
+        good_matches_vs = sorted(matches, key=lambda x: x.distance)
 
-        imgMatches = [good_matches_1, good_matches_2]
-        imgMatchesLen = [len(good_matches_1), len(good_matches_2)]
-        kps = [kp1, kp1_2]
+        imgMatches = [good_matches_mv, good_matches_vs]
+        imgMatchesLen = [len(good_matches_mv), len(good_matches_vs)]
+        kps = [kp_mv, kp_vs]
 
         print('imgMatchesLen', imgMatchesLen)
 
         imgTarget = imgTarget_list[np.argmax(imgMatchesLen)]
         good = imgMatches[np.argmax(imgMatchesLen)]
         kp1 = kps[np.argmax(imgMatchesLen)]
+        anim = anim_list[np.argmax(imgMatchesLen)]
         print('Selected image:', images_list[np.argmax(imgMatchesLen)])
         print('len', len(good))
 
@@ -122,18 +144,17 @@ class MyCamera(Camera, FloatLayout):
             srcPts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
             dstPts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
             matrix, mask = cv2.findHomography(srcPts, dstPts, cv2.RANSAC, 5.0)
-            # print('matrix', matrix)
             if matrix is not None:
                 pts = np.float32([[0, 0], [0, hT], [wT, hT], [wT, 0]]).reshape(-1, 1, 2)
                 dst = cv2.perspectiveTransform(pts, matrix)
 
                 print('frameCounter', self.frameCounter)
-                if self.frameCounter == myVid.get(cv2.CAP_PROP_FRAME_COUNT):
-                    myVid.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                if self.frameCounter == len(anim):
+                    imgVideo = mv_0
                     self.frameCounter = 0
                 else:
-                    myVid.set(cv2.CAP_PROP_POS_FRAMES, self.frameCounter)
-                success, imgVideo = myVid.read()
+                    imgVideo = anim[self.frameCounter]
+
                 imgVideo = cv2.resize(imgVideo, (wT, hT))
 
                 imgWarp = cv2.warpPerspective(imgVideo, matrix, (frame.shape[1], frame.shape[0]))
@@ -154,24 +175,24 @@ class MyCamera(Camera, FloatLayout):
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         return frame.tostring()
 
-class CameraClick(BoxLayout):
-    def __init__(self, **kwargs):
-        print("__init__")
-
-        self._request_android_permissions()
-        super(CameraClick, self).__init__(**kwargs)
-
-    @staticmethod
-    def is_android():
-        return platform == 'android'
-
-    def _request_android_permissions(self):
-        """
-        Requests CAMERA permission on Android.
-        """
-        print("_request")
-
-        if not self.is_android():
-            return
-        from android.permissions import request_permission, Permission
-        request_permission(Permission.CAMERA)
+# class CameraClick(BoxLayout):
+#     def __init__(self, **kwargs):
+#         print("__init__")
+#
+#         self._request_android_permissions()
+#         super(CameraClick, self).__init__(**kwargs)
+#
+#     @staticmethod
+#     def is_android():
+#         return platform == 'android'
+#
+#     def _request_android_permissions(self):
+#         """
+#         Requests CAMERA permission on Android.
+#         """
+#         print("_request")
+#
+#         if not self.is_android():
+#             return
+#         from android.permissions import request_permission, Permission
+#         request_permission(Permission.CAMERA)

@@ -23,7 +23,7 @@
 
         canvas.before:
             Color:
-                rgba: 1, 1, 1, 1
+                rgba: hex('E4D9FF')
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -31,6 +31,19 @@
         BoxLayout:
             orientation: 'vertical'
             cols: 1
+
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: hex('E4D9FF')
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: 1, 0.05
+                markup: True
+                text: 'Digital [i]Реставрация[/i]'
+                color: 0,0,0,1
+#                font_size: 20
 
             BoxLayout:
                 size_hint: 1, 0.30
@@ -48,196 +61,320 @@
 
             BoxLayout:
                 size_hint: 1, 0.25
+                orientation: 'vertical'
+                canvas.before:
+                    Color:
+                        rgba: 1,1,1,1 #hex('#273469')
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [(60, 60), (60, 60), (0, 0), (0, 0)]
+                        source: 'stripes_fit.png'
+                padding: 20, 0
+                Label:
+                    size_hint: 1, 0.2
+                    text: '[b] [/b]'
+                    markup: True
+                    text_size: self.size
+                    font_size: 15
+                    valign: 'bottom'
+                    halign: 'center'
+                    color: hex('#273469')
                 Button:
-                    size: [370, 170]
-                    text: 'QR                            AR'
-                    color: 0,0,0,1
-                    font_size: 30
-                    background_normal:'stripes_fit.png'
-                    background_down: 'stripes_fit.png'
                     on_release: app.root.current = 'thecamera'
-                    Image:
-                        source: 'qrar.png'
-                        center_x: self.parent.center_x
-                        center_y: self.parent.center_y
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: hex('#273469')
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                size_hint: 1, 0.05
-                markup: True
-                text: 'СМОТРИ.  ЧИТАЙ.  СЛУШАЙ.'
-                color: 1,1,1,1
-                font_size: 20
-            Carousel:
+                    background_color: 1, 1, 1, 0
+                    StackLayout:
+                        canvas.before:
+                            Color:
+                                rgba: (1, 1, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+                        pos: self.parent.pos
+                        size: self.parent.width, self.parent.height * 0.9
+                        orientation: 'lr-tb'
+                        Label:
+                            size_hint_x: 1
+                            size_hint_y: 0.2
+                        Image:
+                            source: 'qrar.png'
+                            size_hint_x: 0.4
+                            size_hint_y: 0.6
+                        Label:
+                            text: 'Сканируй QR или AR'
+                            color: 0,0,0,1
+                            size_hint_x: 0.6
+                            size_hint_y: 0.6
+                            text_size: self.size
+                            valign: 'center'
+                            halign: 'left'
+                Label:
+                    size_hint: 1, 0.15
+            BoxLayout:
                 size_hint: 1, 0.25
+                orientation: 'vertical'
                 canvas.before:
                     Color:
-                        rgba: hex('#273469')
+                        rgba: 1,1,1,1 #hex('#273469')
                     Rectangle:
                         pos: self.pos
                         size: self.size
-                direction: 'right'
+                        source: 'stripes_fit.png'
                 BoxLayout:
                     orientation: 'vertical'
-                    padding: 20, 0
-                    Button:
-                        on_release: app.root.current = app.root.watch_screen
-                        background_color: 5, 8, 9, 0
-                        StackLayout:
-                            canvas.before:
-                                Color:
-                                    rgba: (1, 1, 1, 1)
-                                RoundedRectangle:
-                                    pos: self.pos
-                                    size: self.size
-                                    radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
-                            pos: self.parent.x, self.parent.height / 4
-                            size: self.parent.width, self.parent.height * 0.7
-                            orientation: 'lr-tb'
-                            Label:
-                                size_hint_x: 0.1
-                                size_hint_y: 1
-                            Image:
-                                source: 'glaz.png'
-                                size_hint_x: 0.3
-                                size_hint_y: 1
-                            Label:
-                                size_hint_x: 0.1
-                                size_hint_y: 1
-                            Label:
-                                size_hint_x: 0.4
-                                size_hint_y: 1
-                                markup: True
-                                text_size: self.size
-                                halign: 'left'
-                                valign: 'center'
-                                text: app.watch
-                                color: 0, 0, 0, 1
-                BoxLayout:
-                    orientation: 'vertical'
-                    padding: 20, 0
-                    Button:
-                        on_release: app.root.current = app.root.read_screen
-                        background_color: 5, 8, 9, 0
-                        StackLayout:
-                            canvas.before:
-                                Color:
-                                    rgba: (1, 1, 1, 1)
-                                RoundedRectangle:
-                                    pos: self.pos
-                                    size: self.size
-                                    radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
-                            pos: self.parent.x, self.parent.height / 4
-                            size: self.parent.width, self.parent.height * 0.7
-                            orientation: 'lr-tb'
-                            Label:
-                                size_hint_x: 0.1
-                                size_hint_y: 1
-                            Image:
-                                source: 'read.png'
-                                size_hint_x: 0.3
-                                size_hint_y: 1
-                            Label:
-                                size_hint_x: 0.1
-                                size_hint_y: 1
-                            Label:
-                                size_hint_x: 0.4
-                                size_hint_y: 1
-                                markup: True
-                                text_size: self.size
-                                halign: 'left'
-                                valign: 'center'
-                                text: app.read
-                                color: 0, 0, 0, 1
-                BoxLayout:
-                    orientation: 'vertical'
-                    padding: 20, 0
-                    Button:
-                        on_release: app.root.current = app.root.listen_screen
-                        background_color: 5, 8, 9, 0
-                        StackLayout:
-                            canvas.before:
-                                Color:
-                                    rgba: (1, 1, 1, 1)
-                                RoundedRectangle:
-                                    pos: self.pos
-                                    size: self.size
-                                    radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
-                            pos: self.parent.x, self.parent.height / 4
-                            size: self.parent.width, self.parent.height * 0.7
-                            orientation: 'lr-tb'
-                            Label:
-                                size_hint_x: 0.1
-                                size_hint_y: 1
-                            Image:
-                                source: 'ears.png'
-                                size_hint_x: 0.3
-                                size_hint_y: 1
-                            Label:
-                                size_hint_x: 0.1
-                                size_hint_y: 1
-                            Label:
-                                size_hint_x: 0.4
-                                size_hint_y: 1
-                                markup: True
-                                text_size: self.size
-                                halign: 'left'
-                                valign: 'center'
-                                text: app.listen
-                                color: 0, 0, 0, 1
+                    canvas.before:
+                        Color:
+                            rgba: hex('#273469')
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [(60, 60), (60, 60), (0, 0), (0, 0)]
+                    Label:
+                        size_hint: 1, 0.2
+                        text: '[b]СМОТРИ[/b]             [b]ЧИТАЙ[/b]             [b]СЛУШАЙ[/b]'
+                        markup: True
+                        text_size: self.size
+#                        font_size: 15
+                        valign: 'bottom'
+                        halign: 'center'
+                        color: hex('E4D9FF')
+                    Carousel:
+                        direction: 'right'
+                        BoxLayout:
+                            orientation: 'vertical'
+                            padding: 20, 0
+                            BoxLayout:
+                                size_hint: 1, 0.01
+                                orientation: 'horizontal'
+                                BoxLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: hex('E4D9FF')
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                BoxLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: hex('#273469')
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                BoxLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: hex('#273469')
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                            Button:
+                                on_release: app.root.current = app.root.watch_screen
+                                background_color: 1, 1, 1, 0
+                                StackLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: (1, 1, 1, 1)
+                                        RoundedRectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                            radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+                                    pos: self.parent.x, self.parent.height / 8
+                                    size: self.parent.width, self.parent.height * 0.8
+                                    orientation: 'lr-tb'
+                                    Label:
+                                        size_hint_x: 0.1
+                                        size_hint_y: 1
+                                    Image:
+                                        source: 'glaz.png'
+                                        size_hint_x: 0.2
+                                        size_hint_y: 1
+                                    Label:
+                                        size_hint_x: 0.1
+                                        size_hint_y: 1
+                                    Label:
+                                        size_hint_x: 0.5
+                                        size_hint_y: 1
+                                        markup: True
+                                        text_size: self.size
+                                        halign: 'left'
+                                        valign: 'center'
+                                        text: app.watch
+                                        color: 0, 0, 0, 1
+                        BoxLayout:
+                            orientation: 'vertical'
+                            padding: 20, 0
+                            BoxLayout:
+                                size_hint: 1, 0.01
+                                orientation: 'horizontal'
+                                BoxLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: hex('#273469')
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                BoxLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: hex('E4D9FF')
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                BoxLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: hex('#273469')
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                            Button:
+                                on_release: app.root.current = app.root.read_screen
+                                background_color: 5, 8, 9, 0
+                                StackLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: (1, 1, 1, 1)
+                                        RoundedRectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                            radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+                                    pos: self.parent.x, self.parent.height / 8
+                                    size: self.parent.width, self.parent.height * 0.8
+                                    orientation: 'lr-tb'
+                                    Label:
+                                        size_hint_x: 0.1
+                                        size_hint_y: 1
+                                    Image:
+                                        source: 'read.png'
+                                        size_hint_x: 0.2
+                                        size_hint_y: 1
+                                    Label:
+                                        size_hint_x: 0.1
+                                        size_hint_y: 1
+                                    Label:
+                                        size_hint_x: 0.5
+                                        size_hint_y: 1
+                                        markup: True
+                                        text_size: self.size
+                                        halign: 'left'
+                                        valign: 'center'
+                                        text: app.read
+                                        color: 0, 0, 0, 1
+                        BoxLayout:
+                            orientation: 'vertical'
+                            padding: 20, 0
+                            BoxLayout:
+                                size_hint: 1, 0.01
+                                orientation: 'horizontal'
+                                BoxLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: hex('#273469')
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                BoxLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: hex('#273469')
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                BoxLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: hex('E4D9FF')
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                            Button:
+                                on_release: app.root.current = app.root.listen_screen
+                                background_color: 5, 8, 9, 0
+                                StackLayout:
+                                    canvas.before:
+                                        Color:
+                                            rgba: (1, 1, 1, 1)
+                                        RoundedRectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                            radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+                                    pos: self.parent.x, self.parent.height / 8
+                                    size: self.parent.width, self.parent.height * 0.8
+                                    orientation: 'lr-tb'
+                                    Label:
+                                        size_hint_x: 0.1
+                                        size_hint_y: 1
+                                    Image:
+                                        source: 'ears.png'
+                                        size_hint_x: 0.2
+                                        size_hint_y: 1
+                                    Label:
+                                        size_hint_x: 0.1
+                                        size_hint_y: 1
+                                    Label:
+                                        size_hint_x: 0.5
+                                        size_hint_y: 1
+                                        markup: True
+                                        text_size: self.size
+                                        halign: 'left'
+                                        valign: 'center'
+                                        text: app.listen
+                                        color: 0, 0, 0, 1
 
-            GridLayout:
-                cols: 4
-                size_hint: 1, 0.15
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    Button:
-                        background_color: 255, 255, 255, 1
-                        on_release: app.root.current = 'main'
-                        Image:
-                            source: 'main.png'
-                            center_x: self.parent.center_x
-                            center_y: self.parent.center_y
-                            size: self.parent.width * 0.7, self.parent.width * 0.7
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    Button:
-                        background_color: 255, 255, 255, 1
-                        on_release: app.root.current = 'library'
-                        Image:
-                            source: 'library.png'
-                            center_x: self.parent.center_x
-                            center_y: self.parent.center_y
-                            size: self.parent.width * 0.7, self.parent.width * 0.7
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    Button:
-                        background_color: 255, 255, 255, 1
-                        on_release: app.root.current = 'thecamera'
-                        Image:
-                            source: 'skan.png'
-                            center_x: self.parent.center_x
-                            center_y: self.parent.center_y
-                            size: self.parent.width * 0.7, self.parent.width * 0.7
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    Button:
-                        background_color: 255, 255, 255, 1
-                        on_release: app.root.current = 'abapp'
-                        Image:
-                            source: 'abapp.png'
-                            center_x: self.parent.center_x
-                            center_y: self.parent.center_y
-                            size: self.parent.width * 0.7, self.parent.width * 0.7
-
+            Menu:
+#            GridLayout:
+#                canvas.before:
+#                    Color:
+#                        rgba: 1,1,1,1
+#                    Rectangle:
+#                        pos: self.pos
+#                        size: self.size
+#                cols: 4
+#                size_hint: 1, 0.10
+#                BoxLayout:
+#                    orientation: 'horizontal'
+#                    Button:
+#                        background_color: 255, 255, 255, 1
+#                        on_release: app.root.current = 'main'
+#                        Image:
+#                            source: 'main.png'
+#                            pos: self.parent.center_x*0.35, self.parent.center_y
+#                            center_y: self.parent.center_y
+#                            size: self.parent.width * 0.5, self.parent.width * 0.5
+#                BoxLayout:
+#                    orientation: 'horizontal'
+#                    Button:
+#                        background_color: 255, 255, 255, 1
+#                        on_release: app.root.current = 'library'
+#                        Image:
+#                            source: 'library.png'
+#                            pos: self.parent.center_x*0.75, self.parent.center_y
+#                            center_x: self.parent.center_x
+#                            center_y: self.parent.center_y
+#                            size: self.parent.width * 0.5, self.parent.width * 0.5
+#                BoxLayout:
+#                    orientation: 'horizontal'
+#                    Button:
+#                        background_color: 255, 255, 255, 1
+#                        on_release: app.root.current = 'thecamera'
+#                        Image:
+#                            source: 'skan.png'
+#                            pos: self.parent.center_x*0.85, self.parent.center_y
+#                            center_x: self.parent.center_x
+#                            center_y: self.parent.center_y
+#                            size: self.parent.width * 0.5, self.parent.width * 0.5
+#                BoxLayout:
+#                    orientation: 'horizontal'
+#                    Button:
+#                        background_color: 255, 255, 255, 1
+#                        on_release: app.root.current = 'abapp'
+#                        Image:
+#                            source: 'abapp.png'
+#                            pos: self.parent.center_x*0.90, self.parent.center_y
+#                            center_x: self.parent.center_x
+#                            center_y: self.parent.center_y
+#                            size: self.parent.width * 0.5, self.parent.width * 0.5
 
     library:
 

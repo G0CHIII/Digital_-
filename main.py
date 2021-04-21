@@ -18,6 +18,7 @@ from kivy.uix.textinput import TextInput
 import random
 from mycamera import *
 from library import *
+from menu import *
 from kivy.uix.boxlayout import BoxLayout
 
 from io import open
@@ -25,7 +26,7 @@ from kivy.config import Config
 
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
-Window.size = (480, 853)
+Window.size = (480/1.3, 853/1.3)
 
 
 watchlist = ['Медный всадник А.С. Пушкин: Иллюстрации',
@@ -48,7 +49,7 @@ choisesscreen = {'Медный всадник А.С. Пушкин: Иллюст�
                      'Вишневый сад А.П. Чехов: Minecraft-спектакль': 'vscraft',
                      'Вишневый сад А.П. Чехов: Лекция': 'vslecture',
                      'Дон Кихот М. де Сервантес: Фильм': 'dkfilm',
-                     'Дон Кихот М. де Сервантес: Подкаст': 'dpkast'}
+                     'Дон Кихот М. де Сервантес: Подкаст': 'dkpkast'}
 
 
 class Search(TextInput):
@@ -62,7 +63,7 @@ class Search(TextInput):
         self.bind(text=self.on_text)
         self.dropdown = None
         self.hint_text = 'Поиск'
-        self.font_size = 20
+        # self.font_size = 20
 
     def on_text(self, Search, text):
         if self.dropdown:
@@ -78,10 +79,10 @@ class Search(TextInput):
         if len(values) > 0:
             self.dropdown = DropDown()
             for val in self.values[:10]:
-                self.dropdown.add_widget(Button(text=val, size_hint_y=None, height=48, font_size=15, halign='left',
+                self.dropdown.add_widget(Button(text=val, size_hint_y=None, height=200, halign='left',
                                                 background_color=[255, 255, 255, 1], color=[0, 0, 0, 1],
                                                 on_release=self.do_choose))
-            self.dropdown.add_widget(Button(size_hint_y=None, height=1000, background_color=[255, 255, 255, 0.9]))
+            self.dropdown.add_widget(Button(size_hint_y=None, height=3000, background_color=[255, 255, 255, 0.9]))
             self.dropdown.open(self)
 
     def do_choose(self, butt):

@@ -15,9 +15,9 @@ class Lib(FloatLayout):
         self.grid1.pos_hint = {'center_x': .5, 'center_y': .45}
         self.grid1.size_hint_y = None
         self.grid1.cols = 1
-        self.grid1.row_default_height = '125dp'
-        self.grid1.spacing = (20, 20)
-        self.grid1.padding = (10, 10)
+        self.grid1.row_default_height = '100dp'
+        self.grid1.spacing = (50, 50)
+        self.grid1.padding = (50, 50)
         self.grid1.height = self.grid1.minimum_height
         self.ind_pages = {1: ["'illust'", "'glaz.png'", "'[b]Медный Всадник[/b]'", "'А.С. Пушкин'", "'Иллюстрации'"],
                           2: ["'vidbook'", "'glaz.png'", "'[b]Медный Всадник[/b]'", "'А.С. Пушкин'", "'Спектакль'"],
@@ -34,17 +34,17 @@ class Lib(FloatLayout):
 
     def do_page(self,*l):
         self.add_widget(self.grid1)
-        self.btn_view = ToggleButton(group='filter', allow_no_selection=True, state='normal', text='смотри',
-                                    pos_hint={'center_x': .15, 'center_y': .7}, size_hint=[None, None], size=[100, 50],
-                                    on_release=self.do_filter, background_color = (2.28, 2.17, 2.55, 1), color=[0, 0, 0, 1])
+        self.btn_view = ToggleButton(group='filter', allow_no_selection=True, state='normal', text='Смотри',
+                                    pos_hint={'center_x': .15, 'center_y': .7}, size_hint=[0.33, 0.6],
+                                    on_release=self.do_filter, background_color = (1, 1, 1, 0), color=[1, 1, 1, 1])
 
-        self.btn_read = ToggleButton(group='filter', allow_no_selection=True, state='normal', text='читай',
-                                       pos_hint={'center_x': .5, 'center_y': .7}, size_hint=[None, None], size=[100, 50],
-                                       on_release=self.do_filter, background_color = (2.28, 2.17, 2.55, 1), color=[0, 0, 0, 1])
+        self.btn_read = ToggleButton(group='filter', allow_no_selection=True, state='normal', text='Читай',
+                                       pos_hint={'center_x': .5, 'center_y': .7}, size_hint=[0.34, 0.6],
+                                       on_release=self.do_filter, background_color = (1, 1, 1, 0), color=[1, 1, 1, 1])
 
-        self.btn_listen = ToggleButton(group='filter', allow_no_selection=True, state='normal', text='слушай',
-                                     pos_hint={'center_x': .85, 'center_y': .7}, size_hint=[None, None], size=[100, 50],
-                                     on_release=self.do_filter, background_color = (2.28, 2.17, 2.55, 1), color=[0, 0, 0, 1])
+        self.btn_listen = ToggleButton(group='filter', allow_no_selection=True, state='normal', text='Слушай',
+                                     pos_hint={'center_x': .85, 'center_y': .7}, size_hint=[0.33, 0.6],
+                                     on_release=self.do_filter, background_color = (1, 1, 1, 0), color=[1, 1, 1, 1])
 
         self.add_widget(self.btn_view)
         self.add_widget(self.btn_read)
@@ -70,22 +70,28 @@ class Lib(FloatLayout):
 
         if self.btn_view.state == 'down':
             self.ind_pages_filter = ind_pages_view.copy()
+            self.btn_view.font_size = '20sp'
         elif self.btn_read.state == 'down':
             self.ind_pages_filter = ind_pages_read.copy()
+            self.btn_read.font_size = '20sp'
         elif self.btn_listen.state == 'down':
             self.ind_pages_filter = ind_pages_listen.copy()
+            self.btn_listen.font_size = '20sp'
         else:
             self.ind_pages_filter = self.ind_pages.copy()
+
+        if self.btn_view.state == 'normal':
+            self.btn_view.font_size = '15sp'
+        if self.btn_read.state == 'normal':
+            self.btn_read.font_size = '15sp'
+        if self.btn_listen.state == 'normal':
+            self.btn_listen.font_size = '15sp'
+
 
         self.add_buttons()
 
 
     def add_buttons(self,):
-        print('btn_view:', self.btn_view.state)
-        print('btn_read:', self.btn_read.state)
-        print('btn_listen:', self.btn_listen.state)
-
-        print(self.ind_pages_filter)
 
         for i in self.ind_pages_filter.keys():
 
@@ -100,24 +106,24 @@ Button:
             RoundedRectangle:
                 pos: self.pos
                 size: self.size
-                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
+                radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
         pos: self.parent.pos
         size: self.parent.size
         orientation: 'lr-tb'
         Label:
-            size_hint_x: 0.05
-            size_hint_y: 0.7
+            size_hint_x: 0.1
+            size_hint_y: 1
         Image:
             source: """ + self.ind_pages_filter[i][1] + """
-            size_hint_x: 0.25
-            size_hint_y: 0.7
+            size_hint_x: 0.20
+            size_hint_y: 1
         Label:
-            size_hint_x: 0.05
-            size_hint_y: 0.7
+            size_hint_x: 0.1
+            size_hint_y: 1
         BoxLayout:
             orientation: "vertical"
-            size_hint_x: 0.65
-            size_hint_y: 0.7
+            size_hint_x: 0.60
+            size_hint_y: 1
             Label:
                 text_size: self.size
                 valign: 'bottom'
@@ -132,16 +138,12 @@ Button:
                 markup: True
                 text: """ + self.ind_pages_filter[i][3] + """
                 color: 0, 0, 0, 1
-        Label:
-            size_hint_x: 0.05
-            size_hint_y: 0.7
-        Label:
-            text_size: self.size
-            halign: 'left'
-            valign: 'middle'
-            size_hint_x: 0.7
-            size_hint_y: 0.3
-            text: """ + self.ind_pages_filter[i][4] + """
-            color: 0, 0, 0, 1
+            Label:
+                text_size: self.size
+                valign: 'top'
+                halign: 'left'
+                markup: True
+                text: """ + self.ind_pages_filter[i][4] + """
+                color: 0, 0, 0, 1
 """
             self.grid1.add_widget(Builder.load_string(template))

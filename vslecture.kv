@@ -33,67 +33,9 @@
                     halign: 'center'
                     valign: 'top'
                     padding: 10, 10
-                    text: 'Arzamas\nА.П. Чехов "Вишневый сад"\n Лекция из курса «Русская литература XX века.\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
+                    text: 'Arzamas\nА.П. Чехов "Вишневый сад"\n Лекция из курса "Русская литература XX века".\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
                     color: 0, 0, 0, 1
                     on_ref_press:
                         import webbrowser
                         webbrowser.open('https://www.youtube.com/watch?v=yDJOSUHDpQI')
-
-    GridLayout:
-        cols: 4
-        size_hint: 1, 0.15
-
-
-        BoxLayout:
-            orientation: 'horizontal'
-            Button:
-                background_color: 255, 255, 255, 1
-                on_release: app.root.current = 'main'
-                Image:
-                    source: 'main.png'
-                    pos: self.parent.center_x*0.35, self.parent.center_y
-                    center_y: self.parent.center_y
-                    size: self.parent.width * 0.7, self.parent.width * 0.7
-
-
-
-        BoxLayout:
-            orientation: 'horizontal'
-            Button:
-                background_color: 255, 255, 255, 1
-                on_release: app.root.current = 'library'
-                Image:
-                    source: 'library.png'
-                    pos: self.parent.center_x*0.75, self.parent.center_y
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
-                    size: self.parent.width * 0.7, self.parent.width * 0.7
-
-
-        BoxLayout:
-            orientation: 'horizontal'
-            Button:
-                background_color: 255, 255, 255, 1
-                on_release: app.root.current = 'thecamera'
-                Image:
-                    source: 'skan.png'
-                    pos: self.parent.center_x*0.85, self.parent.center_y
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
-                    size: self.parent.width * 0.7, self.parent.width * 0.7
-
-
-        BoxLayout:
-            orientation: 'horizontal'
-            Button:
-                background_color: 255, 255, 255, 1
-                on_release: app.root.current = 'abapp'
-                Image:
-                    source: 'abapp.png'
-                    pos: self.parent.center_x*0.90, self.parent.center_y
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
-                    size: self.parent.width * 0.7, self.parent.width * 0.7
-
-
-
+    Menu:
