@@ -1,0 +1,87 @@
+
+
+
+
+<illkihot@Screen>:
+    name: 'illkihot'
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            GridLayout:
+                size_hint_y: None
+                cols: 1
+                row_default_height: root.height / 1.5
+                spacing: 20, 20
+                height: self.minimum_height
+
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: illkihot1
+                        source: 'illkihot1.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: root.height / 2
+                    Label:
+                        text_size: self.size
+                        halign: 'center'
+                        valign: 'center'
+                        padding: 10, 10
+                        text: "Работа мексиканского художника и декоратора Октавио Окампо"
+                        color: 0, 0, 0, 1
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: illkihot2
+                        source: 'illkihot2.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: root.height / 2
+                    Label:
+                        text_size: self.size
+                        halign: 'center'
+                        valign: 'center'
+                        padding: 10, 10
+                        text: 'Поль Гюстав Доре 1863г.  Иллюстрации к роману "Дон Кихот"'
+                        color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: illkihot3
+                        source: 'illkihot3.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: root.height / 2
+                    Label:
+                        markup: True
+                        text_size: self.size
+                        halign: 'center'
+                        valign: 'top'
+                        padding: 10, 10
+                        text: 'Больше иллюстраций по произведению!\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
+                        color: 0, 0, 0, 1
+                        on_ref_press:
+                            import webbrowser
+                            webbrowser.open('https://artchive.ru/publications/894~Don_Kikhot_s_luchshimi_kartinami_i_illjustratsijami_ot_Dore_i_Dali_do_Serova_i_Zvereva')
+
+        Menu:

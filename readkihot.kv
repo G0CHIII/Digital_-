@@ -1,0 +1,57 @@
+
+
+<readkihot@Screen>:
+    rows: 2
+    name: 'readkihot'
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Image:
+            id: readkihot
+            source: 'readkihot.png'
+            size_hint: 1, 0.9
+            allow_stretch: True
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            GridLayout:
+                size_hint_y: None
+                rows: 1
+                cols: 1
+                row_default_height: root.height * 1.3
+                spacing: 20, 20
+                height: self.minimum_height
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    Label:
+                        markup: True
+                        text_size: self.size
+                        halign: 'left'
+                        valign: 'top'
+                        padding: 10, 10
+                        text: 'В 2002 году, подводя итоги ушедшего тысячелетия, Нобелевский комитет собрал авторитетное жюри, в которое вошли сто известных писателей из пятидесяти четырёх стран мира. Их попросили определить лучшее произведение мировой литературы. «Книгой всех времён и народов» был назван «Дон Кихот».В прошлом году Испания и весь мир отметили четырёхсотлетие первой публикации романа Сервантеса. 23 апреля, в день смерти Сервантеса, во многих странах, в том числе и в России, в переполненных залах множество людей, сменяя друг друга, двое суток беспрерывно читали на разных языках эту трагикомическую эпопею от первой строчки пролога: «Досужий читатель! Ты и без клятвы можешь поверить, как хотелось бы мне, чтобы эта книга, плод моего разумения…» — до завершающей авторской росписи-вздоха «Vale». Никакая другая книга не читается хором всем миром.'
+                        color: 0, 0, 0, 1
+
+                    Label:
+                        markup: True
+                        text_size: self.size
+                        halign: 'center'
+                        valign: 'top'
+                        padding: 10, 10
+                        text: '[ref=some][b]БОЛЬШЕ ИНТЕРЕСНЫХ ФАКТОВ[/b][/ref]'
+                        color: 0, 0, 0, 1
+                        on_ref_press:
+                            import webbrowser
+                            webbrowser.open('https://www.liveinternet.ru/users/noche_de_mayo/post132031822/')
+    Menu:
