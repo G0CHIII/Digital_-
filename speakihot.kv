@@ -1,0 +1,43 @@
+
+
+<speakihot@Screen>:
+    rows: 2
+    name: 'speakihot'
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+
+        GridLayout:
+            rows: 4
+            cols: 1
+            minimum_height: self.height
+
+            Image:
+                id: speakihot
+                source: 'speakihot.png'
+                size_hint: 1, 0.8
+                allow_stretch: True
+
+            RelativeLayout:
+                pos_hint: {'x': 1, 'y': 1}
+                Label:
+                    markup: True
+                    text_size: self.size
+                    halign: 'center'
+                    valign: 'top'
+                    padding: 10, 10
+                    text: 'КНИГА ИЛИ ФИЛЬМ?\nАнтон Долин и Галина Юзефович — о том, какой смысл в экранизациях.\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
+                    color: 0, 0, 0, 1
+                    on_ref_press:
+                        import webbrowser
+                        webbrowser.open('https://mel.fm/mneniye_eksperta/317248-film_adaptation_don_quixote')
+
+    Menu:

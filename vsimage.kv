@@ -1,0 +1,59 @@
+
+
+<vsimage@Screen>:
+    name: 'vsimage'
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            GridLayout:
+                size_hint_y: None
+                cols: 1
+                row_default_height: root.height / 1.5
+                spacing: 20, 20
+                height: self.minimum_height
+
+
+                GridLayout:
+                    rows: 2
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: vsimage1
+                        source: 'vsimage1.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: root.height / 2
+
+                    RelativeLayout:
+                        pos_hint: {'x': 1, 'y': 1}
+                        Label:
+                            text_size: self.size
+                            halign: 'left'
+                            valign: 'top'
+                            padding: 10, 10
+                            text: '"Вишневый сад. Комедия в 4-х действиях"\nИллюстратор: Алимов Сергей Александрович'
+                            color: 0, 0, 0, 1
+
+                GridLayout:
+                    rows: 1
+                    cols: 1
+                    spacing: 10
+                    Image:
+                        id: vsimage2
+                        source: 'vsimage2.png'
+                        size_hint_y: None
+                        allow_stretch: True
+                        height: root.height / 2
+        Menu:

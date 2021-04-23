@@ -15,14 +15,14 @@
         do_scroll_y: True
 
         GridLayout:
-            rows: 2
+            rows: 4
             cols: 1
             minimum_height: self.height
 
             Image:
                 id: cuprum
                 source: 'vscraft.png'
-                size_hint: 1, 0.6
+                size_hint: 1, 0.8
                 allow_stretch: True
 
             RelativeLayout:
@@ -38,5 +38,25 @@
                     on_ref_press:
                         import webbrowser
                         webbrowser.open('https://www.youtube.com/watch?v=L9FfoPSzNRY')
+
+            Image:
+                id: vsimage3
+                source: 'vsimage3.png'
+                size_hint: 1, 0.8
+                allow_stretch: True
+
+            RelativeLayout:
+                pos_hint: {'x': 1, 'y': 1}
+                Label:
+                    markup: True
+                    text_size: self.size
+                    halign: 'center'
+                    valign: 'top'
+                    padding: 10, 10
+                    text: 'ДОПОЛНИТЕЛЬНО\nСтатья про спектакль-перформанс "Before I Sleep".\nРежиссер Тристан Шарпс.\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
+                    color: 0, 0, 0, 1
+                    on_ref_press:
+                        import webbrowser
+                        webbrowser.open('https://www.theguardian.com/stage/2010/may/04/dreamthinkspeak-tristan-sharps')
 
     Menu:
