@@ -15,45 +15,50 @@
         do_scroll_y: True
 
         GridLayout:
-            rows: 4
+            size_hint_y: None
             cols: 1
-            minimum_height: self.height
+            row_default_height: root.height / 1.6
+            spacing: 20, 20
+            height: self.minimum_height
 
-            Image:
-                id: cuprum
-                source: 'vscraft.png'
-                size_hint: 1, 0.8
-                allow_stretch: True
-
-            RelativeLayout:
-                pos_hint: {'x': 1, 'y': 1}
+            GridLayout:
+                rows: 2
+                cols: 1
+                spacing: 10
+                Image:
+                    source: 'vscraft.png'
+                    size_hint_y: None
+                    allow_stretch: True
+                    height: root.height / 3
                 Label:
                     markup: True
                     text_size: self.size
                     halign: 'center'
                     valign: 'top'
                     padding: 10, 10
-                    text: 'БДТ ИМЕНИ Г.А. ТОВСТОНОГОВА\n"ВИШНЕВЫЙ САД"\n\nMinecraft-спектакль БДТ\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
+                    text: 'БДТ ИМЕНИ Г.А. ТОВСТОНОГОВА\n"ВИШНЕВЫЙ САД"\nMinecraft-спектакль БДТ\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
                     color: 0, 0, 0, 1
                     on_ref_press:
                         import webbrowser
                         webbrowser.open('https://www.youtube.com/watch?v=L9FfoPSzNRY')
 
-            Image:
-                id: vsimage3
-                source: 'vsimage3.png'
-                size_hint: 1, 0.8
-                allow_stretch: True
-
-            RelativeLayout:
-                pos_hint: {'x': 1, 'y': 1}
+            GridLayout:
+                rows: 2
+                cols: 1
+                spacing: 10
+                Image:
+                    id: vsimage3
+                    source: 'vsimage3.png'
+                    size_hint_y: None
+                    allow_stretch: True
+                    height: root.height / 3
                 Label:
                     markup: True
                     text_size: self.size
                     halign: 'center'
                     valign: 'top'
                     padding: 10, 10
-                    text: 'ДОПОЛНИТЕЛЬНО\nСтатья про спектакль-перформанс "Before I Sleep".\nРежиссер Тристан Шарпс.\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
+                    text: 'Статья про спектакль-перформанс "Before I Sleep".\nРежиссер Тристан Шарпс.\n\n[ref=some]КЛИКНИ СЮДА[/ref]'
                     color: 0, 0, 0, 1
                     on_ref_press:
                         import webbrowser
