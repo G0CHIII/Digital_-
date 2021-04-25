@@ -45,11 +45,11 @@ class MyCamera(Camera, FloatLayout):
             self.texture = self._camera.texture
             self.texture_size = list(self.texture.size)
         self.btn_qr = ToggleButton(group='fun', allow_no_selection = False, state='down',
-                                   pos_hint = {'center_x': .4, 'y': 1}, size_hint=[None, None], size=[100, 100],
+                                   pos_hint = {'center_x': .4, 'center_y': .9}, size_hint=[None, None], size=[250, 250],
                                    background_normal  = 'qr.png', background_down  = 'qr_dark.png'
                                    )
         self.btn_ar = ToggleButton(group='fun', allow_no_selection = False,
-                                   pos_hint = {'center_x': .6, 'y': 1}, size_hint=[None, None], size=[100, 100],
+                                   pos_hint = {'center_x': .6, 'center_y': .9}, size_hint=[None, None], size=[250, 250],
                                    background_normal  = 'ar.png', background_down  = 'ar_dark.png'
                                    )
         self.add_widget(self.btn_qr)
@@ -73,7 +73,8 @@ class MyCamera(Camera, FloatLayout):
             buf = self.process_frame(frame)
         self.texture.blit_buffer(buf, colorfmt='rgb', bufferfmt='ubyte')
         if kivy.platform == 'android':
-            self.texture.flip_vertical()
+            print('platform', kivy.platform)
+  #          self.texture.flip_vertical()
         if kivy.platform != 'android':
             self.texture.flip_horizontal()
         super(MyCamera, self).on_tex(*l)
@@ -94,8 +95,8 @@ class MyCamera(Camera, FloatLayout):
         if kivy.platform == 'android':
             frame = rotate_image(frame, 90)
             frame = cv2.flip(frame, 1)
-        if kivy.platform != 'android':
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+#        if kivy.platform != 'android':
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         return frame.tostring()
 
     def process_frame(self, frame):
@@ -171,8 +172,8 @@ class MyCamera(Camera, FloatLayout):
         if kivy.platform == 'android':
             frame = rotate_image(frame, 90)
             frame = cv2.flip(frame, 1)
-        if kivy.platform != 'android':
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+#        if kivy.platform != 'android':
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         return frame.tostring()
 
 # class CameraClick(BoxLayout):
