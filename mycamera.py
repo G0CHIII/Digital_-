@@ -1,5 +1,4 @@
 import kivy
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.togglebutton import ToggleButton
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.camera import Camera
@@ -45,11 +44,11 @@ class MyCamera(Camera, FloatLayout):
             self.texture = self._camera.texture
             self.texture_size = list(self.texture.size)
         self.btn_qr = ToggleButton(group='fun', allow_no_selection = False, state='down',
-                                   pos_hint = {'center_x': .4, 'center_y': .9}, size_hint=[None, None], size=[250, 250],
+                                   pos_hint = {'center_x': .4, 'y': 1}, size_hint=[None, None], size=[250, 250],
                                    background_normal  = 'qr.png', background_down  = 'qr_dark.png'
                                    )
         self.btn_ar = ToggleButton(group='fun', allow_no_selection = False,
-                                   pos_hint = {'center_x': .6, 'center_y': .9}, size_hint=[None, None], size=[250, 250],
+                                   pos_hint = {'center_x': .6, 'y': 1}, size_hint=[None, None], size=[250, 250],
                                    background_normal  = 'ar.png', background_down  = 'ar_dark.png'
                                    )
         self.add_widget(self.btn_qr)
@@ -101,7 +100,7 @@ class MyCamera(Camera, FloatLayout):
 
     def process_frame(self, frame):
         mv_0 = cv2.imread("mv_0.png")
-        vs_0 = cv2.imread("mv_0.png")
+        vs_0 = cv2.imread("vs_0.png")
         imgTarget_list = [mv_0, vs_0]
         images_list = ['vsadnik', 'vishnya']
         mv_1 = cv2.imread("mv_1.png")
@@ -109,8 +108,17 @@ class MyCamera(Camera, FloatLayout):
         mv_3 = cv2.imread("mv_3.png")
         mv_4 = cv2.imread("mv_4.png")
         mv_5 = cv2.imread("mv_5.png")
+
+        vs_1 = cv2.imread("vs_1.png")
+        vs_2 = cv2.imread("vs_2.png")
+        vs_3 = cv2.imread("vs_3.png")
+        vs_4 = cv2.imread("vs_4.png")
+        vs_5 = cv2.imread("vs_5.png")
+        vs_6 = cv2.imread("vs_6.png")
+        vs_7 = cv2.imread("vs_7.png")
+
         mv_list = [mv_1, mv_2, mv_3, mv_4, mv_5]
-        vs_list = [mv_1, mv_2, mv_3, mv_4, mv_5]
+        vs_list = [vs_1, vs_2, vs_3, vs_4, vs_5, vs_6, vs_7, vs_4]
         anim_list = [mv_list, vs_list]
 
         orb = cv2.ORB_create()
@@ -151,7 +159,7 @@ class MyCamera(Camera, FloatLayout):
 
                 print('frameCounter', self.frameCounter)
                 if self.frameCounter == len(anim):
-                    imgVideo = mv_0
+                    imgVideo = anim[0]
                     self.frameCounter = 0
                 else:
                     imgVideo = anim[self.frameCounter]
