@@ -19,6 +19,33 @@ class MyCamera(Camera, FloatLayout):
     symbol = StringProperty()
     def __init__(self, **kwargs):
         self._request_android_permissions()
+        self.mv_0 = cv2.imread("mv_0.png")
+        self.vs_0 = cv2.imread("vs_0.png")
+        self.dk_0 = cv2.imread("dk_0.png")
+        self.imgTarget_list = [self.mv_0, self.dk_0, self.vs_0]
+        self.images_list = ['vsadnik', 'kihot', 'vishnya']
+
+        self.mv_1 = cv2.imread("mv_1.png")
+        self.mv_2 = cv2.imread("mv_2.png")
+        self.mv_3 = cv2.imread("mv_3.png")
+        self.mv_4 = cv2.imread("mv_4.png")
+        self.mv_5 = cv2.imread("mv_5.png")
+
+        self.dk_1 = cv2.imread("dk_1.png")
+        self.dk_2 = cv2.imread("dk_2.png")
+        self.dk_3 = cv2.imread("dk_3.png")
+
+        self.vs_1 = cv2.imread("vs_1.png")
+        self.vs_2 = cv2.imread("vs_2.png")
+        self.vs_3 = cv2.imread("vs_3.png")
+        self.vs_4 = cv2.imread("vs_4.png")
+        self.vs_5 = cv2.imread("vs_5.png")
+
+        self.mv_list = [self.mv_1, self.mv_2, self.mv_3, self.mv_4, self.mv_5]
+        self.dk_list = [self.dk_1, self.dk_2, self.dk_3]
+        self.vs_list = [self.vs_5, self.vs_1,self.vs_2, self.vs_1, self.vs_5, self.vs_3, self.vs_4, self.vs_3]
+
+        self.anim_list = [self.mv_list, self.dk_list, self.vs_list]
         super(MyCamera, self).__init__(**kwargs)
 
     @staticmethod
@@ -71,8 +98,6 @@ class MyCamera(Camera, FloatLayout):
         elif self.btn_ar.state == 'down':
             buf = self.process_frame(frame)
         self.texture.blit_buffer(buf, colorfmt='rgb', bufferfmt='ubyte')
-        if kivy.platform == 'android':
-            print('platform', kivy.platform)
   #          self.texture.flip_vertical()
         if kivy.platform != 'android':
             self.texture.flip_horizontal()
@@ -99,56 +124,40 @@ class MyCamera(Camera, FloatLayout):
         return frame.tostring()
 
     def process_frame(self, frame):
-        mv_0 = cv2.imread("mv_0.png")
-        vs_0 = cv2.imread("vs_0.png")
-        imgTarget_list = [mv_0, vs_0]
-        images_list = ['vsadnik', 'vishnya']
-        mv_1 = cv2.imread("mv_1.png")
-        mv_2 = cv2.imread("mv_2.png")
-        mv_3 = cv2.imread("mv_3.png")
-        mv_4 = cv2.imread("mv_4.png")
-        mv_5 = cv2.imread("mv_5.png")
-
-        vs_1 = cv2.imread("vs_1.png")
-        vs_2 = cv2.imread("vs_2.png")
-        vs_3 = cv2.imread("vs_3.png")
-        vs_4 = cv2.imread("vs_4.png")
-        vs_5 = cv2.imread("vs_5.png")
-        vs_6 = cv2.imread("vs_6.png")
-        vs_7 = cv2.imread("vs_7.png")
-
-        mv_list = [mv_1, mv_2, mv_3, mv_4, mv_5]
-        vs_list = [vs_1, vs_2, vs_3, vs_4, vs_5, vs_6, vs_7, vs_4]
-        anim_list = [mv_list, vs_list]
 
         orb = cv2.ORB_create()
         imgAug = frame.copy()
         kp2, des2 = orb.detectAndCompute(frame, None)
-        imgAug = cv2.drawKeypoints(imgAug, kp2, None)
+        # imgAug = cv2.drawKeypoints(imgAug, kp2, None)
         bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 
-        kp_mv, des_mv = orb.detectAndCompute(mv_0, None)
+        kp_mv, des_mv = orb.detectAndCompute(self.mv_0, None)
         matches = bf.match(des_mv, des2)
         good_matches_mv = sorted(matches, key=lambda x: x.distance)
 
-        kp_vs, des_vs = orb.detectAndCompute(vs_0, None)
+        kp_dk, des_dk = orb.detectAndCompute(self.dk_0, None)
+        matches = bf.match(des_dk, des2)
+        good_matches_dk = sorted(matches, key=lambda x: x.distance)
+
+        kp_vs, des_vs = orb.detectAndCompute(self.vs_0, None)
         matches = bf.match(des_vs, des2)
         good_matches_vs = sorted(matches, key=lambda x: x.distance)
 
-        imgMatches = [good_matches_mv, good_matches_vs]
-        imgMatchesLen = [len(good_matches_mv), len(good_matches_vs)]
-        kps = [kp_mv, kp_vs]
+
+        imgMatches = [good_matches_mv, good_matches_dk, good_matches_vs]
+        imgMatchesLen = [len(good_matches_mv), len(good_matches_dk), len(good_matches_vs)]
+        kps = [kp_mv, kp_dk, kp_vs]
 
         print('imgMatchesLen', imgMatchesLen)
 
-        imgTarget = imgTarget_list[np.argmax(imgMatchesLen)]
+        imgTarget = self.imgTarget_list[np.argmax(imgMatchesLen)]
         good = imgMatches[np.argmax(imgMatchesLen)]
         kp1 = kps[np.argmax(imgMatchesLen)]
-        anim = anim_list[np.argmax(imgMatchesLen)]
-        print('Selected image:', images_list[np.argmax(imgMatchesLen)])
+        anim = self.anim_list[np.argmax(imgMatchesLen)]
+        print('Selected image:', self.images_list[np.argmax(imgMatchesLen)])
         print('len', len(good))
 
-        if len(good) > 50:
+        if len(good) > 54:
             hT, wT, cT = imgTarget.shape
             srcPts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
             dstPts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
@@ -162,7 +171,11 @@ class MyCamera(Camera, FloatLayout):
                     imgVideo = anim[0]
                     self.frameCounter = 0
                 else:
-                    imgVideo = anim[self.frameCounter]
+                    try:
+                        imgVideo = anim[self.frameCounter]
+                    except:
+                        imgVideo = anim[0]
+                        self.frameCounter = 0
 
                 imgVideo = cv2.resize(imgVideo, (wT, hT))
 
