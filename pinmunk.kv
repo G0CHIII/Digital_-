@@ -1,8 +1,8 @@
 
 
-<audbook@Screen>:
+<pinmunk@Screen>:
     rows: 2
-    name: 'audbook'
+    name: 'pinmunk'
 
     canvas.before:
         Color:
@@ -14,25 +14,26 @@
     GridLayout:
         rows: 2
         cols: 1
-        minimum_height: self.height
 
         Image:
-            id: cuprum
-            source: 'aud.png'
+            id: pinmunk
+            source: 'pinmunk.png'
             size_hint: 1, 0.6
             allow_stretch: True
 
-        RelativeLayout:
-            pos_hint: {'x': 1, 'y': 1}
+        GridLayout:
+            rows: 2
+            cols: 1
             Label:
                 markup: True
                 text_size: self.size
                 halign: 'center'
                 valign: 'top'
                 padding: 10, 10
-                text: 'А.С.Пушкин. "Медный всадник". Читает Сергей Герасимов (1982)\n\n[ref=some][b]КЛИКНИ СЮДА[/b][/ref]'
+                text: 'Увлекательная статья о влиянии работ Ф.М. Достоевского на творчество художника Эдварда Мунка\n\n[ref=some][b]КЛИКНИ СЮДА[/b][/ref]'
                 color: 0, 0, 0, 1
                 on_ref_press:
                     import webbrowser
-                    webbrowser.open('https://www.youtube.com/watch?v=8stiZXNoC9g')
+                    webbrowser.open('https://ru.rbth.com/zhizn/256-dostoevsky-munch-krik')
+
     Menu:

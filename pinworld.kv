@@ -1,8 +1,8 @@
 
 
-<audbook@Screen>:
+<pinworld@Screen>:
     rows: 2
-    name: 'audbook'
+    name: 'pinworld'
 
     canvas.before:
         Color:
@@ -14,11 +14,10 @@
     GridLayout:
         rows: 2
         cols: 1
-        minimum_height: self.height
 
         Image:
-            id: cuprum
-            source: 'aud.png'
+            id: pinworld
+            source: 'pinworld.png'
             size_hint: 1, 0.6
             allow_stretch: True
 
@@ -30,9 +29,10 @@
                 halign: 'center'
                 valign: 'top'
                 padding: 10, 10
-                text: 'А.С.Пушкин. "Медный всадник". Читает Сергей Герасимов (1982)\n\n[ref=some][b]КЛИКНИ СЮДА[/b][/ref]'
+                text: 'Необъятный и крайне стильный сайт о творчестве Ф.М. Достоевского\n\n[ref=some][b]КЛИКНИ СЮДА[/b][/ref]'
                 color: 0, 0, 0, 1
                 on_ref_press:
                     import webbrowser
-                    webbrowser.open('https://www.youtube.com/watch?v=8stiZXNoC9g')
+                    webbrowser.open('https://dostoevskyworld.ru/')
+
     Menu:
